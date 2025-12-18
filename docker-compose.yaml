@@ -3,11 +3,13 @@ services:
   mongodb:
     image: mongo:7.0.5
     container_name: mongodb
+    restart: always
+    logging:
+      options:
+        max-size: "1g"
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: rami
-      MONGO_INITDB_ROOT_PASSWORD: rami
       MONGO_INITDB_DATABASE: product-service
     volumes:
-      - ./data://data/db
+      - ./data/mongodb:/data/db
